@@ -1,0 +1,36 @@
+{
+  "url": "http://127.0.0.1:8080/officer",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "E-Niriksha",
+      "hasCanvas": false,
+      "bodyTextLen": 684,
+      "bodyTextHash": "b7f300c49aca4ca3812db1ce693d04f2b49f2b484c223855e54584e2337939af",
+      "bodyTextPrefix": "E-Niriksha GOVERNMENT DESK Overview Queue Case Patterns Reposito",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/officer.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "E-Niriksha",
+      "hasCanvas": false,
+      "bodyTextLen": 627,
+      "bodyTextHash": "b16ca38383f4d15c04a1d57d869645f753811e75c955a56a64a1eeb1aa3a96bd",
+      "bodyTextPrefix": "E-Niriksha GOVERNMENT DESK Overview Queue Case Patterns Reposito",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/officer-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/officer.json"
+}

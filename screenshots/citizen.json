@@ -1,0 +1,36 @@
+{
+  "url": "http://127.0.0.1:8080/citizen",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "E-Niriksha",
+      "hasCanvas": false,
+      "bodyTextLen": 363,
+      "bodyTextHash": "862ab376da629c285f00f24de73c328fbf5c9add0fd982184cae25f1ff84dbd5",
+      "bodyTextPrefix": "Citizen scan Preliminary · not an official finding 1. Scan 2. Co",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/citizen.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "E-Niriksha",
+      "hasCanvas": false,
+      "bodyTextLen": 363,
+      "bodyTextHash": "862ab376da629c285f00f24de73c328fbf5c9add0fd982184cae25f1ff84dbd5",
+      "bodyTextPrefix": "Citizen scan Preliminary · not an official finding 1. Scan 2. Co",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/citizen-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/citizen.json"
+}

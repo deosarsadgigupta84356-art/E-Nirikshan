@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="E-Niriksha concept prototype for evidence-first Legal Metrology inspection and public reporting workflows.">
+<title>E-Niriksha | Evidence-first Legal Metrology</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@400;500;600;700&family=Noto+Sans+Kannada:wght@400;500;600;700&family=Noto+Sans+Tamil:wght@400;500;600;700&family=Noto+Sans+Telugu:wght@400;500;600;700&family=Noto+Sans+Malayalam:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@400;500;600;700&family=Noto+Sans+Gujarati:wght@400;500;600;700&family=Noto+Sans+Gurmukhi:wght@400;500;600;700&family=Noto+Sans+Oriya:wght@400;500;600;700&family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+ --ink:#22252a;--muted:#6d6b65;--paper:#f5f0e5;--paper2:#fbf8f0;--navy:#203b61;--navy2:#2d5078;
+ --red:#a74334;--ochre:#c8943e;--green:#3f6b56;--teal:#4f817c;--line:#d8d0c1;--white:#fffdf8;
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:"Plus Jakarta Sans",Arial,sans-serif;background-image:repeating-linear-gradient(0deg,rgba(50,40,30,.022) 0 1px,transparent 1px 5px),radial-gradient(circle at 12% 20%,rgba(255,255,255,.8),transparent 28%),radial-gradient(circle at 88% 65%,rgba(224,209,185,.28),transparent 28%)}
+button,a,input{font:inherit}a{text-decoration:none;color:inherit}button{cursor:pointer}
+.site-nav{position:sticky;top:14px;z-index:50;width:min(1280px,calc(100% - 28px));margin:14px auto 0;min-height:78px;padding:9px 13px;background:rgba(252,249,241,.96);border:1px solid #d6cdbd;border-radius:16px;display:flex;align-items:center;gap:16px;box-shadow:0 3px 0 rgba(75,59,39,.04)}
+.brand{display:flex;align-items:center;gap:12px;min-width:295px}.brand-mark{width:52px;height:52px;display:grid;place-items:center;background:#f2e7d3;border:1px solid #d2c4ad;border-radius:50%;overflow:hidden}.brand-mark svg{width:44px;height:44px}.brand-text{font-weight:800;line-height:1.02;color:var(--navy);font-size:20px}.brand-text small{display:block;margin-top:4px;font-size:9px;letter-spacing:1.4px;color:#80776a;font-weight:700}
+.nav-links{display:flex;gap:2px;align-items:center;flex:1;overflow:auto}.nav-links button{border:0;background:transparent;color:#55534f;padding:13px 13px;font-weight:700;font-size:13px;white-space:nowrap}.nav-links button.active{color:var(--navy);border-bottom:3px solid var(--red)}
+.nav-right{display:flex;align-items:center;gap:9px}.lang-btn{border:1px solid #c9bfaf;background:#fffaf1;color:var(--navy);padding:10px 12px;font-weight:800;font-size:11px}.gov-chip{padding:10px 12px;border-left:1px solid var(--line);font-size:10px;line-height:1.2;color:#615d56;letter-spacing:.4px}
+.page{display:none}.page.active{display:block}.container{width:min(1280px,calc(100% - 34px));margin:auto}
+.hero{min-height:calc(100vh - 108px);display:grid;grid-template-columns:1.02fr .98fr;gap:20px;align-items:center;position:relative}.hero-copy{padding:72px 15px 85px 30px}.eyebrow{font-size:11px;letter-spacing:2.1px;color:var(--red);font-weight:800;margin-bottom:18px}.hero h1{font-family:Fraunces,Georgia,serif;font-weight:600;color:var(--navy);font-size:clamp(66px,8.2vw,126px);line-height:.83;letter-spacing:-6px;margin:0}.hero h1 em{font-style:normal;color:var(--red)}.hero-kannada{font-size:20px;color:#776b5e;margin:21px 0 8px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}.hero-hi{font-family:"Anek Devanagari",sans-serif}.hero-kn{font-family:"Noto Sans Kannada",sans-serif}.tag-sep{font-family:Manrope,sans-serif;color:var(--red)}.hero-copy p{max-width:580px;font-size:17px;line-height:1.65;color:#5e5b55;margin:0}.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}.btn{border:0;padding:13px 18px;border-radius:3px;font-weight:800;font-size:13px}.btn.primary{background:var(--navy);color:#fff}.btn.red{background:var(--red);color:#fff}.btn.outline{background:transparent;border:1px solid #bdb2a0;color:var(--navy)}
+.hero-note{margin-top:20px;font-size:11px;color:#777166}.hero-note b{color:var(--navy)}
+.hero-stage{height:690px;position:relative;display:flex;align-items:center;justify-content:center}.photo-stack{width:min(540px,86%);height:560px;position:relative}.photo-card{position:absolute;overflow:hidden;background:#eee4d4;border:8px solid #fffdf8;box-shadow:0 3px 0 rgba(90,65,35,.12)}.photo-card img{width:100%;height:100%;object-fit:cover;display:block}.photo-main{width:76%;height:78%;left:12%;top:10%;transform:rotate(1.5deg)}.photo-back{width:47%;height:42%;right:-2%;bottom:0;transform:rotate(5deg)}.photo-small{width:39%;height:31%;left:-1%;bottom:4%;transform:rotate(-6deg)}.photo-caption{position:absolute;left:20px;bottom:17px;background:#fffdf8;padding:8px 10px;font-size:10px;color:#514d46;border-left:3px solid var(--red)}
+.reel-overlay{position:absolute;left:18%;top:21%;width:58%;height:55%;background:rgba(25,46,74,.08);pointer-events:none}.reel-play{position:absolute;right:19%;top:17%;width:66px;height:66px;border-radius:50%;border:0;background:var(--red);color:white;font-size:22px;box-shadow:none}.reel-label{position:absolute;right:2%;top:4%;background:var(--navy);color:#fff;padding:9px 12px;font-size:10px;letter-spacing:1.1px;font-weight:800;transform:rotate(3deg)}
+.jago-sticker{position:absolute;left:-4%;top:7%;width:118px;transform:rotate(-8deg);background:#fffdf8;padding:7px;border:1px solid #d5cab9}.jago-sticker img{width:100%;display:block}.jago-sticker span{display:block;font-size:8px;text-align:center;margin-top:4px;color:#7c756b}.scale-sticker{position:absolute;right:-1%;bottom:13%;background:#f4e6ce;border:1px solid #cbbda6;padding:13px 15px;transform:rotate(4deg);font-family:"DM Serif Display",serif;color:var(--navy);font-size:22px}.scale-sticker small{display:block;font-family:Manrope,sans-serif;font-size:8px;letter-spacing:1px;color:#7a6c5b}
+.hero-rule{display:flex;align-items:center;gap:8px;margin:24px 0}.hero-rule i{display:block;height:5px}.hero-rule i:nth-child(1){width:75px;background:var(--navy)}.hero-rule i:nth-child(2){width:40px;background:var(--red)}.hero-rule i:nth-child(3){width:22px;background:var(--ochre)}
+.ribbon{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:12px 0;background:#eee5d5}.ribbon-inner{display:flex;align-items:center;gap:26px;overflow:auto;white-space:nowrap}.ribbon strong{font-size:11px;color:var(--navy);letter-spacing:1px}.ribbon span{font-size:10px;color:#6f685e}.ribbon .sep{width:4px;height:4px;background:var(--red);border-radius:50%;flex:none}
+.section{padding:92px 0}.section-head{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:42px}.kicker{font-size:10px;letter-spacing:2.3px;color:var(--red);font-weight:800}.section h2{font-family:Fraunces,Georgia,serif;color:var(--navy);font-weight:600;font-size:clamp(44px,6vw,80px);line-height:.9;letter-spacing:-3px;margin:8px 0}.lead{max-width:520px;color:#625f59;font-size:16px;line-height:1.65}
+.story{display:grid;grid-template-columns:1.25fr .75fr;gap:24px;align-items:stretch}.story-photo{min-height:520px;position:relative;overflow:hidden;border:1px solid #d2c7b6;background:#ddd0bd}.story-photo img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.9)}.story-photo .stamp{position:absolute;right:24px;top:24px;background:#fffdf8;padding:13px 15px;border:1px solid #c9bcaa;transform:rotate(4deg);font-size:10px;letter-spacing:1px;font-weight:800;color:var(--red)}.story-copy{background:#fbf8f0;border:1px solid var(--line);padding:34px}.story-copy h3{font-family:"DM Serif Display",serif;color:var(--navy);font-size:36px;font-weight:600;margin:0 0 16px}.story-copy p{color:#64615b;line-height:1.65;font-size:14px}.evidence-line{margin-top:26px;border-top:1px solid var(--line)}.evidence-line div{padding:13px 0;border-bottom:1px solid #e4ddd1;display:flex;justify-content:space-between;gap:20px;font-size:12px}.evidence-line b{color:var(--navy)}
+.process{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.process article{padding:27px 23px;min-height:215px;border-right:1px solid var(--line)}.process article:last-child{border-right:0}.process .num{font-family:"DM Serif Display",serif;color:var(--red);font-size:30px}.process h3{color:var(--navy);font-size:19px;margin:18px 0 8px}.process p{font-size:12px;line-height:1.6;color:#6a665f}
+.roles-layout{display:grid;grid-template-columns:1fr 1fr;gap:24px}.role-board{border:1px solid var(--line);background:#fbf8f0;padding:25px}.role-list{display:flex;flex-direction:column}.role-item{display:grid;grid-template-columns:65px 1fr auto;gap:16px;align-items:center;padding:18px 0;border-bottom:1px solid #e2dbcf}.role-item:last-child{border-bottom:0}.role-num{font-family:"DM Serif Display",serif;font-size:33px;color:var(--red)}.role-item h3{margin:0;color:var(--navy);font-size:20px}.role-item p{margin:5px 0 0;color:#6a665f;font-size:12px;line-height:1.5}.role-open{border:1px solid #b9ae9d;background:transparent;color:var(--navy);padding:9px 11px;font-size:10px;font-weight:800}.real-photo-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:12px}.real-photo-grid figure{margin:0;background:#e8ddca;border:7px solid #fffdf8;min-height:220px;position:relative}.real-photo-grid figure:first-child{grid-row:span 2;transform:rotate(-1deg)}.real-photo-grid figure:nth-child(2){transform:rotate(2deg)}.real-photo-grid figure:nth-child(3){transform:rotate(-2deg)}.real-photo-grid img{width:100%;height:100%;object-fit:cover;display:block}.real-photo-grid figcaption{position:absolute;left:8px;bottom:8px;background:#fffdf8;padding:6px 8px;font-size:9px;color:#514d46}
+.identity-strip{margin-top:45px;border:1px solid var(--line);background:#fbf8f0;padding:18px 22px;display:flex;align-items:center;gap:28px}.identity-strip .identity-label{font-size:10px;letter-spacing:1.5px;color:#756d62;font-weight:800}.identity-logo{height:62px;max-width:130px;object-fit:contain}.identity-copy{font-size:11px;color:#716b62;line-height:1.5}.identity-copy b{color:var(--navy)}
+.demo-layout{display:grid;grid-template-columns:1fr 1fr;gap:22px}.evidence-panel,.review-panel{background:#fbf8f0;border:1px solid var(--line);padding:24px}.evidence-photo{width:100%;height:420px;object-fit:cover;border:7px solid #fffdf8;background:#ddd}.evidence-meta{border-top:1px solid var(--line);margin-top:15px}.meta-row{display:flex;justify-content:space-between;gap:20px;padding:11px 0;border-bottom:1px solid #e2dbcf;font-size:11px}.meta-row b{color:var(--navy)}.source-note{font-size:9px;line-height:1.5;color:#777067;margin-top:12px}.product-gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.product-gallery figure{margin:0;border:1px solid var(--line);background:#fffdf8;padding:8px;min-height:280px}.product-gallery img{width:100%;height:235px;object-fit:contain;display:block;background:#f1ece2}.product-gallery figcaption{font-size:10px;line-height:1.35;color:#514d46;padding:8px 3px 2px}.hash-box{background:#efe7d9;border:1px dashed #c8bca8;padding:12px;font-size:10px;line-height:1.5;word-break:break-all}.geo-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 8px;background:#e6efe8;color:#355c49;border:1px solid #b9d0bf;font-size:9px;font-weight:800;letter-spacing:.5px}.action-log{margin-top:14px;border-top:1px solid var(--line)}.action-log div{padding:10px 0;border-bottom:1px solid #e2dbcf;font-size:11px}.action-log b{color:var(--navy)}.decl.actioned{background:#f0eadf}.decl button{border:1px solid #c8bdac;background:#fffdf8;color:var(--navy);padding:7px 9px;font-size:9px;font-weight:800}.decl .decl-actions{display:flex;gap:5px;flex-wrap:wrap;margin-top:9px}.review-explainer{background:#f0e9dc;border-left:4px solid var(--teal);padding:12px 14px;font-size:11px;line-height:1.55;color:#5f5b54}.result.show{display:block}.result.success{border-left-color:var(--green);background:#edf4ef}.result.warning{border-left-color:var(--ochre);background:#f7f0df}.capture-permission{background:#efe7d9;border:1px solid #d5c8b5;padding:14px;margin-bottom:14px}.capture-permission strong{color:var(--navy)}.capture-permission p{font-size:11px;line-height:1.5;color:#625e56;margin:5px 0 10px}.small-note{font-size:9px;color:#777067;line-height:1.5}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}.about-box{background:#fbf8f0;border:1px solid var(--line);padding:30px}.about-box h3{font-family:"DM Serif Display",serif;color:var(--navy);font-size:32px;margin:0 0 12px}.about-box p,.about-box li{font-size:13px;color:#65615b;line-height:1.65}.about-box ul{padding-left:20px}.notice{margin-top:18px;border-left:4px solid var(--red);padding:12px 14px;background:#f3e9db;font-size:11px;color:#665f55;line-height:1.5}
+.footer{border-top:1px solid var(--line);padding:32px 0 42px;color:#6f6a62;font-size:10px}.footer-inner{display:flex;justify-content:space-between;gap:24px}.footer a{text-decoration:underline}.disclaimer{margin-top:14px;max-width:760px;line-height:1.5}
+/* portal */
+.portal{position:fixed;inset:0;background:rgba(29,37,48,.58);z-index:100;display:none;padding:18px;overflow:auto}.portal.open{display:block}.portal-shell{width:min(1220px,100%);min-height:calc(100vh - 36px);margin:auto;background:#f3eee4;border:1px solid #cfc5b4}.portal-head{background:#fbf8f0;border-bottom:1px solid var(--line);padding:15px 19px;display:flex;align-items:center;justify-content:space-between}.portal-title{font-weight:800;color:var(--navy);font-size:14px}.close{border:1px solid #bdb2a0;background:#fffdf8;color:var(--navy);padding:8px 12px;font-weight:800;font-size:11px}.portal-tabs{display:flex;background:#ebe2d3;border-bottom:1px solid var(--line);overflow:auto}.portal-tabs button{border:0;background:transparent;padding:13px 16px;color:#625d55;font-weight:800;font-size:11px;white-space:nowrap}.portal-tabs button.active{background:#fbf8f0;color:var(--navy);border-bottom:3px solid var(--red)}.portal-content{padding:21px}.portal-view{display:none}.portal-view.active{display:block}.panel{background:#fbf8f0;border:1px solid var(--line);padding:20px}.panel h3{margin:0 0 12px;color:var(--navy)}.portal-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}.table{width:100%;border-collapse:collapse;font-size:12px}.table th,.table td{text-align:left;padding:11px 8px;border-bottom:1px solid #e2dbcf}.table th{font-size:9px;letter-spacing:1px;color:#777067}.status{font-weight:800;font-size:10px}.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--teal);margin-right:5px}.dot.amber{background:var(--ochre)}.dot.red{background:var(--red)}.capture-layout{display:grid;grid-template-columns:1fr 330px;gap:18px}.capture-tabs{display:flex;border-bottom:1px solid var(--line);margin-bottom:15px}.capture-tabs button{border:0;background:transparent;padding:10px 13px;color:#68635b;font-size:11px}.capture-tabs button.active{color:var(--navy);font-weight:900;border-bottom:2px solid var(--red)}.capture-view{display:none}.capture-view.active{display:block}.evidence-real{width:100%;height:490px;object-fit:contain;background:#e0d8ca;border:1px solid #c9bead}.camera-box{height:490px;background:#dad1c2;border:1px solid #c7bca9;position:relative;overflow:hidden;display:grid;place-items:center}.camera-box video,.camera-box img{width:100%;height:100%;object-fit:contain;background:#252b33}.camera-box .frame{position:absolute;inset:48px;border:1px solid rgba(255,255,255,.9);pointer-events:none}.capture-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px}.capture-actions button{border:0;padding:10px 13px;font-size:11px;font-weight:800}.capture-actions .primary{background:var(--navy);color:#fff}.capture-actions .secondary{background:#fffdf8;border:1px solid #bdb2a0;color:var(--navy)}.capture-status{padding:12px;background:#edf3ee;border-left:3px solid var(--green);margin-top:13px;font-size:11px;color:#536057}.declarations{display:grid;grid-template-columns:1fr 1fr;gap:8px}.decl{background:#fffdf8;border:1px solid var(--line);padding:13px;display:flex;justify-content:space-between;gap:15px}.decl b{font-size:12px;color:var(--navy)}.decl small{display:block;color:#777067;margin-top:4px;font-size:10px}.verify{display:flex;gap:8px;margin-top:17px}.verify button{padding:10px 13px;font-size:11px;font-weight:800}.accept{background:var(--green);border:0;color:white}.correct{background:#fffdf8;border:1px solid var(--navy);color:var(--navy)}.reject{background:#fffdf8;border:1px solid var(--red);color:var(--red)}.citizen-scan{display:grid;grid-template-columns:1fr 1fr;gap:18px}.upload-box{background:#fffdf8;border:1px dashed #b8ad9d;padding:48px;text-align:center;color:#6e675e;cursor:pointer;font-size:12px}.result{display:none;margin-top:14px;padding:14px;background:#edf3ee;border-left:3px solid var(--green);font-size:12px;line-height:1.5}.result.show{display:block}
+.lang-hi{display:none}.hindi-on .lang-en{display:none}.hindi-on .lang-hi{display:inline}.hindi-on .brand-text small{font-family:"Anek Devanagari",sans-serif}
+@media(max-width:980px){.site-nav{flex-wrap:wrap}.brand{min-width:auto}.nav-links{order:3;width:100%}.nav-right{margin-left:auto}.hero,.story,.roles-layout,.demo-layout,.about-grid,.portal-grid,.citizen-scan,.capture-layout{grid-template-columns:1fr}.hero-stage{height:590px}.process{grid-template-columns:1fr 1fr}.role-board{order:2}.real-photo-grid{min-height:500px}.identity-strip{align-items:flex-start;flex-wrap:wrap}}
+@media(max-width:600px){.container{width:min(100% - 22px,1280px)}.site-nav{top:6px;width:calc(100% - 12px)}.gov-chip{display:none}.hero-copy{padding:60px 6px 25px}.hero h1{font-size:62px;letter-spacing:-3px}.hero-stage{height:490px}.photo-stack{height:410px;width:96%}.jago-sticker{width:88px}.scale-sticker{font-size:17px}.process{grid-template-columns:1fr}.process article{border-right:0;border-bottom:1px solid var(--line)}.real-photo-grid{grid-template-columns:1fr;min-height:auto}.real-photo-grid figure:first-child{grid-row:auto}.declarations{grid-template-columns:1fr}.footer-inner{flex-direction:column}}
+
+/* v5: human editorial field-story treatment */
+.language-wrap{display:flex;align-items:center;gap:7px;padding:6px 8px;border:1px solid #c9bfaf;background:#fffaf1}
+.language-label{font-size:9px;letter-spacing:.6px;color:#746d63;font-weight:800;white-space:nowrap}
+.language-select{border:0;background:transparent;color:var(--navy);font-size:11px;font-weight:800;outline:0;cursor:pointer;max-width:120px}
+.story-reel{width:min(600px,92%);height:610px;position:relative;overflow:hidden;background:#d8cdbd;border:1px solid #c9bca9}
+.story-slide{position:absolute;inset:0;opacity:0;transform:scale(1.025);transition:opacity .75s ease,transform 4s ease;pointer-events:none}
+.story-slide.active{opacity:1;transform:scale(1);z-index:2}
+.story-slide img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.92) contrast(1.02)}
+.story-slide:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,30,42,.02) 48%,rgba(20,30,42,.78) 100%)}
+.story-copy-card{position:absolute;z-index:4;left:25px;right:25px;bottom:25px;color:#fff;display:grid;grid-template-columns:45px 1fr;column-gap:13px;align-items:end}
+.story-copy-card span{font-family:"DM Serif Display",serif;font-size:34px;line-height:1;color:#e5b95c}
+.story-copy-card strong{font-family:"DM Serif Display",serif;font-size:31px;line-height:1.02;font-weight:600;max-width:430px}
+.story-copy-card small{grid-column:2;margin-top:7px;font-size:10px;letter-spacing:.7px;color:#f5eee3}
+.story-progress{position:absolute;z-index:6;left:25px;right:25px;top:24px;display:flex;gap:5px}
+.story-progress i{height:3px;flex:1;background:rgba(255,255,255,.35);overflow:hidden}
+.story-progress i.active{background:#fff}
+.story-progress i.active:after{content:"";display:block;height:100%;background:var(--ochre);animation:storyTimer 3.6s linear forwards}
+@keyframes storyTimer{from{width:0}to{width:100%}}
+.story-label{position:absolute;z-index:6;right:20px;top:49px;background:#fffdf8;color:var(--navy);padding:8px 10px;transform:rotate(2deg);font-size:8px;letter-spacing:1px;border:1px solid #c9bcaa}
+.story-label b{display:block;margin-top:3px;color:var(--red);font-size:8px}
+.product-gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+.product-gallery figure{margin:0;border:1px solid #d5ccbf;background:#f8f4ea;padding:7px}
+.product-gallery img{width:100%;height:220px;object-fit:contain;background:#fff;display:block}
+.product-gallery figcaption{font-size:9px;color:#5d5952;margin-top:7px;letter-spacing:.2px}
+.camera-box{min-height:420px}
+.camera-box video{width:100%;height:100%;min-height:420px;object-fit:cover;background:#171a1d}
+.capture-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.capture-actions button{min-height:42px}
+.capture-help{margin-top:10px;padding:10px 12px;background:#eee5d7;border-left:3px solid var(--ochre);font-size:10px;line-height:1.5;color:#625c54}
+.device-camera{display:none}
+.story-reel:before{content:"LIVE STORY";position:absolute;z-index:7;left:20px;bottom:20px;border:1px solid rgba(255,255,255,.5);background:rgba(16,30,48,.68);color:#fff;padding:6px 9px;font-size:8px;letter-spacing:1.4px;font-weight:800}
+.story-slide.active .story-copy-card{animation:storyCopyIn .7s ease both}
+@keyframes storyCopyIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:980px){
+  .story-reel{height:520px;width:100%}
+  .story-copy-card strong{font-size:26px}
+  .product-gallery{grid-template-columns:1fr}
+  .product-gallery img{height:250px}
+  .language-label{display:none}
+}
+@media(max-width:620px){
+  .site-nav{top:7px;margin-top:7px;width:calc(100% - 14px)}
+  .nav-links{gap:0;overflow-x:auto;padding-bottom:2px}
+  .nav-links button{font-size:11px;padding:10px 9px}
+  .story-reel{height:430px}
+  .story-copy-card{left:17px;right:17px;bottom:18px}
+  .story-copy-card strong{font-size:23px}
+  .story-label{right:12px;top:44px}
+}
+</style>
+</head>
+<body>
+<header class="site-nav">
+  <a class="brand" href="#home" onclick="showPage('home')">
+    <span class="brand-mark"><svg viewBox="0 0 50 50" aria-hidden="true"><circle cx="25" cy="25" r="22" fill="#203b61"/><path d="M13 32h24M16 32l4-14 5 14 5-14 4 14M19 18h12" fill="none" stroke="#f5f0e5" stroke-width="2"/><circle cx="25" cy="25" r="3" fill="#c8943e"/></svg></span>
+    <span class="brand-text">E-Niriksha <small><span class="lang-en">LEGAL METROLOGY · INDIA</span><span class="lang-hi">विधिक माप विज्ञान · भारत</span></small></span>
+  </a>
+  <nav class="nav-links">
+    <button data-page="home" class="active" onclick="showPage('home')" data-i18n="navHome">Home</button>
+    <button data-page="journey" onclick="showPage('journey')" data-i18n="navJourney">How it works</button>
+    <button data-page="roles" onclick="showPage('roles')" data-i18n="navRoles">Who uses it</button>
+    <button data-page="demo" onclick="showPage('demo')" data-i18n="navDemo">Demo</button>
+    <button data-page="about" onclick="showPage('about')" data-i18n="navAbout">About</button>
+  </nav>
+  <div class="nav-right">
+    <label class="language-wrap" title="Choose interface language">
+      <span class="language-label">भाषा / Language</span>
+      <select id="languageSelect" class="language-select" onchange="setLanguage(this.value)" aria-label="Choose language">
+        <option value="en">English</option>
+        <option value="hi">हिन्दी</option>
+        <option value="kn">ಕನ್ನಡ</option>
+        <option value="ta">தமிழ்</option>
+        <option value="te">తెలుగు</option>
+        <option value="ml">മലയാളം</option>
+        <option value="mr">मराठी</option>
+        <option value="bn">বাংলা</option>
+        <option value="gu">ગુજરાતી</option>
+        <option value="pa">ਪੰਜਾਬੀ</option>
+        <option value="or">ଓଡ଼ିଆ</option>
+        <option value="as">অসমীয়া</option>
+      </select>
+    </label>
+    <div class="gov-chip">DEPARTMENT OF CONSUMER AFFAIRS<br>PACKAGED COMMODITIES · CONCEPT</div>
+  </div>
+</header>
+
+<main>
+<section id="page-home" class="page active">
+  <div class="container hero">
+    <div class="hero-copy">
+      <div class="eyebrow"><span class="lang-en">LEGAL METROLOGY · PACKAGED COMMODITIES</span><span class="lang-hi">विधिक माप विज्ञान · पैकेज्ड कमोडिटीज़</span></div>
+      <h1><span>E-NIRIKSHA</span><span><em>FIELD</em> TO <em>PROOF</em></span></h1>
+      <div class="hero-kannada" id="heroTagline"><span class="hero-hi">साक्ष्य से समीक्षा तक</span><span class="tag-sep">·</span><span class="hero-kn">ಸಾಕ್ಷ್ಯದಿಂದ ಪರಿಶೀಲನೆಗೆ</span></div>
+      <div class="hero-rule"><i></i><i></i><i></i></div>
+      <p id="heroDescription">A practical digital workflow for packaged commodities: record what is seen, preserve provenance, organise declaration information, and keep the final finding with the responsible officer.</p>
+      <div class="hero-actions"><button class="btn red" onclick="openPortal('inspector')" data-i18n="ctaInspector">Open inspector</button><button class="btn outline" onclick="showPage('demo')" data-i18n="ctaExplore">Explore workflow</button><button class="btn primary" onclick="openPortal('citizen')" data-i18n="ctaCitizen">Citizen scan</button></div>
+      <div class="hero-note"><b>Prototype note:</b> this is a functional concept interface, not an official Government of India portal.</div>
+    </div>
+    <div class="hero-stage">
+      <div class="story-reel" id="storyReel" aria-label="Automatic E-Niriksha consumer journey">
+        <div class="story-slide active">
+          <img src="https://assets.st-note.com/production/uploads/images/122401420/picture_pc_1f0f323678ba2d0d5501918f441ba330.jpg" alt="Real Indian supermarket shelf with packaged foods">
+          <div class="story-copy-card"><span>01</span><strong>Food reaches the shelf</strong><small>Real Indian supermarket scene · packaged goods enter everyday life</small></div>
+        </div>
+        <div class="story-slide">
+          <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6e/Moldy_nectarines.jpg/1280px-Moldy_nectarines.jpg" alt="Real spoiled fruit covered in mould">
+          <div class="story-copy-card"><span>02</span><strong>A product problem is noticed</strong><small>Real spoilage photograph · the consumer spots something wrong</small></div>
+        </div>
+        <div class="story-slide">
+          <img src="https://bda-skl.in/uploads/2025/11/woman-filing-a-consumer-complaint-on-a-tablet-at-a-helpline-kiosk-what-is-the-consumer-protection-act-in-india-a-simple-guide-to-your-rights.webp" onerror="this.src='https://pbs.twimg.com/media/FuIXinxakAAzET6.jpg'" alt="Consumer complaint being prepared online">
+          <div class="story-copy-card"><span>03</span><strong>The customer raises a complaint</strong><small>Complaint journey · photo / product details become the lead</small></div>
+        </div>
+        <div class="story-slide">
+          <img src="https://media.assettype.com/thenewsminute%2Fimport%2Fsites%2Fall%2Fvar%2Fwww%2Fimages%2FLegal_Meterology_Godown_Raid_1.jpeg" alt="Indian Legal Metrology officers inspecting packaged goods">
+          <div class="story-copy-card"><span>04</span><strong>An inspector comes in</strong><small>Real Legal Metrology enforcement photograph · field action begins</small></div>
+        </div>
+        <div class="story-slide">
+          <img src="https://images.bhaskarassets.com/thumb/1200x900/web2images/521/2025/09/24/6f751853-cfa7-4cdf-9943-4ae07a2f5d10_1758685428291.jpg" alt="Officials inspecting packaged snack products in India">
+          <div class="story-copy-card"><span>05</span><strong>The package is inspected</strong><small>Real inspection scene · labels, quantity and declarations are checked</small></div>
+        </div>
+        <div class="story-slide">
+          <img src="https://pbs.twimg.com/media/FuIXinxakAAzET6.jpg" alt="National Consumer Helpline success story showing complaint resolution">
+          <div class="story-copy-card"><span>06</span><strong>The complaint is registered</strong><small>National Consumer Helpline 1915 · real consumer-awareness success story</small></div>
+        </div>
+        <div class="story-slide">
+          <img src="https://pbs.twimg.com/media/FuIXinxakAAzET6.jpg" alt="National Consumer Helpline success story showing resolved complaint">
+          <div class="story-copy-card"><span>07</span><strong>The case moves toward resolution</strong><small>Real NCH success story · a reminder that follow-up needs a recorded outcome</small></div>
+        </div>
+        <div class="story-progress" id="storyProgress" aria-hidden="true"></div>
+        <div class="story-label"><span>E-NIRIKSHA</span><b>NOTICE → COMPLAINT → INSPECTION → RESOLUTION</b></div>
+      </div>
+      <div class="jago-sticker"><img src="https://jagograhakjago.gov.in/cg/images/jagologo.png" alt="Jago Grahak Jago official campaign logo"><span>consumer-awareness campaign mark</span></div>
+      <div class="scale-sticker">MRP · NET QTY<small>DECLARATIONS THAT MATTER</small></div>
+    </div>
+  </div>
+  <div class="ribbon"><div class="container ribbon-inner"><strong>FIELD RECORD</strong><span class="sep"></span><span>photograph</span><span class="sep"></span><span>GPS + accuracy</span><span class="sep"></span><span>capture time</span><span class="sep"></span><span>SHA-256 fingerprint</span><span class="sep"></span><strong>OFFICER REVIEW</strong></div></div>
+</section>
+
+<section id="page-journey" class="page">
+  <div class="container section">
+    <div class="section-head"><div><div class="kicker">THE FIELD JOURNEY</div><h2>From package<br>to evidence.</h2></div><p class="lead">The interface follows the actual evidence chain instead of pretending that an AI score is the final answer. Offline capture is bounded; heavier processing waits for sync.</p></div>
+    <div class="story">
+      <div class="story-photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Chickpet_Sabzi_Mandi.jpg/1280px-Chickpet_Sabzi_Mandi.jpg" alt="Chickpet Sabzi Mandi, Bengaluru"><div class="stamp">CHICKPET SABZI MANDI · BENGALURU<br>REAL MARKET PHOTOGRAPH</div></div>
+      <div class="story-copy"><div class="kicker">01 · TRACEABLE CAPTURE</div><h3>Record the scene before interpreting it.</h3><p>Every inspector photograph is associated with case identity, inspector identity, evidence sequence, GPS coordinates and accuracy, capture or sync time, and a SHA-256 fingerprint.</p><p>The interface deliberately separates what the camera captured from what later extractors or rules may infer. A photograph can establish traceability without, by itself, proving the authenticity of GPS or the scene.</p><div class="evidence-line"><div><span>Capture profile</span><b>Package-adaptive</b></div><div><span>Offline state</span><b>Bounded</b></div><div><span>Post-sync processing</span><b>Evidence → rules → review</b></div></div></div>
+    </div>
+    <div style="height:55px"></div>
+    <div class="process">
+      <article><div class="num">01</div><h3>Capture</h3><p>Package profile guides the inspector to the evidence views required for the package type.</p></article>
+      <article><div class="num">02</div><h3>Preserve</h3><p>Identity, sequence, location, time and SHA-256 provenance travel with the evidence record.</p></article>
+      <article><div class="num">03</div><h3>Map</h3><p>Declaration groups are represented as Supported, Conflicting, Unresolved, Obscured/Damaged, Potentially Absent or Not Applicable.</p></article>
+      <article><div class="num">04</div><h3>Verify</h3><p>The officer accepts, corrects or rejects the evidence-grounded result. AI support never becomes the officer's decision.</p></article>
+    </div>
+  </div>
+</section>
+
+<section id="page-roles" class="page">
+  <div class="container section">
+    <div class="section-head"><div><div class="kicker">PEOPLE, NOT DASHBOARDS</div><h2>Three views of<br>one evidence chain.</h2></div><p class="lead">Different users see different work. The prototype keeps the role boundaries visible instead of flattening everyone into one generic dashboard.</p></div>
+    <div class="roles-layout">
+      <div class="role-board"><div class="kicker">PORTALS</div><div class="role-list">
+        <div class="role-item"><div class="role-num">01</div><div><h3>Government Officer</h3><p>Priority queue, systemic patterns, history, evidence-grounded review and coordinated follow-up.</p></div><button class="role-open" onclick="openPortal('officer')">OPEN</button></div>
+        <div class="role-item"><div class="role-num">02</div><div><h3>Legal Metrology Inspector</h3><p>Assigned case, package-adaptive capture, offline evidence, compliance map and evidence-linked report.</p></div><button class="role-open" onclick="openPortal('inspector')">OPEN</button></div>
+        <div class="role-item"><div class="role-num">03</div><div><h3>Citizen</h3><p>Preliminary scan, visible-information review, confirmation, complaint submission and tracking.</p></div><button class="role-open" onclick="openPortal('citizen')">OPEN</button></div>
+      </div></div>
+      <div class="real-photo-grid">
+        <figure><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Chickpet_Sabzi_Mandi.jpg/1280px-Chickpet_Sabzi_Mandi.jpg" alt="Bangalore city market grocery store"><figcaption>Chickpet Sabzi Mandi, Bengaluru · real photograph</figcaption></figure>
+        <figure><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Weighing_balance_in_a_vegetable_shop.jpg/960px-Weighing_balance_in_a_vegetable_shop.jpg" alt="Weighing balance in Tamil Nadu vegetable shop"><figcaption>Measurement instrument · Tamil Nadu</figcaption></figure>
+        <figure><img src="https://upload.wikimedia.org/wikipedia/commons/e/ee/Indian_product_MRP_and_USP_example.jpg" alt="Indian product label showing MRP"><figcaption>Packaged label · MRP example</figcaption></figure>
+      </div>
+    </div>
+    <div class="identity-strip"><div class="identity-label">CONTEXTUAL IDENTITY</div><img class="identity-logo" style="width:42px;object-fit:contain" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/500px-Emblem_of_India.svg.png" alt="State Emblem of India"><img class="identity-logo" src="https://jagograhakjago.gov.in/cg/images/jagologo.png" alt="Jago Grahak Jago official campaign logo"><img class="identity-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Bureau_of_Indian_Standards_Logo.svg/768px-Bureau_of_Indian_Standards_Logo.svg.png" alt="Bureau of Indian Standards logo"><div class="identity-copy"><b>Government ecosystem references</b><br>Official marks are shown here as contextual references only. E-Niriksha itself is presented as a concept prototype and does not claim government ownership or endorsement.</div></div>
+  </div>
+</section>
+
+<section id="page-demo" class="page">
+  <div class="container section">
+    <div class="section-head"><div><div class="kicker">OFFICER VIEW</div><h2>What the<br>inspector sees.</h2></div><p class="lead">This page is a visual review workspace. The old satellite map has been removed because the supplied requirements call for GPS coordinates and accuracy as provenance, not a geographic dashboard.</p></div>
+    <div class="demo-layout">
+      <div class="evidence-panel"><div class="kicker">PACKAGE PHOTOGRAPHS</div><h3 style="font-family:"DM Serif Display",serif;color:var(--navy);font-size:31px;margin:8px 0 14px">Back-of-pack details, as photographed.</h3><div class="product-gallery">
+        <figure><img src="https://www.bbassets.com/media/uploads/p/s/40202282-3_13-lays-potato-chips-indian-masala-magic-flavour-best-quality-crunchy.jpg" alt="Lay's India Magic Masala packet back and declaration panel"><figcaption>Lay's India Magic Masala · back panel / declarations</figcaption></figure>
+        <figure><img src="https://www.bbassets.com/media/uploads/p/s/1203912-3_1-parle-gluco-biscuits-parle-g.jpg" alt="Parle-G packet back panel with printed declarations"><figcaption>Parle-G · back panel / MRP and manufacturer details</figcaption></figure>
+        <figure><img src="https://www.bbassets.com/media/uploads/p/s/40207351-2_7-kurkure-namkeen-masala-munch.jpg" alt="Kurkure Masala Munch packet back panel"><figcaption>Kurkure Masala Munch · back panel / nutrition and declarations</figcaption></figure>
+      </div></div>
+      <div class="review-panel"><div class="kicker">EVIDENCE REVIEW</div><h3 style="font-family:"DM Serif Display",serif;color:var(--navy);font-size:31px;margin:8px 0 14px">Traceability beside the image.</h3><img class="evidence-photo" src="https://upload.wikimedia.org/wikipedia/commons/e/ee/Indian_product_MRP_and_USP_example.jpg" alt="Indian product label photographed for MRP example"><div class="evidence-meta"><div class="meta-row"><span>Evidence sequence</span><b>photo-01</b></div><div class="meta-row"><span>Capture time</span><b>Recorded at capture</b></div><div class="meta-row"><span>GPS</span><b>12.97160, 77.59460 ± 12 m</b></div><div class="meta-row"><span>Fingerprint</span><b>SHA-256</b></div></div><div class="hash-box" style="margin-top:14px">SHA-256 is a cryptographic fingerprint of the image bytes. If the file changes, its SHA-256 value changes. It helps prove that the reviewed file is the same file that was captured or stored; it does not by itself prove that the scene or GPS claim is authentic.</div><button class="btn red" style="margin-top:16px" onclick="openPortal('inspector')">Open full inspector flow</button></div>
+    </div>
+  </div>
+</section>
+
+<section id="page-about" class="page">
+  <div class="container section">
+    <div class="section-head"><div><div class="kicker">ABOUT THE CONCEPT</div><h2>Built around<br>evidence, not theatre.</h2></div><p class="lead">The interface takes its terminology and workflow from the supplied E-Niriksha requirements, while the visual language is deliberately grounded in Indian field context.</p></div>
+    <div class="about-grid">
+      <div class="about-box"><h3>What belongs here</h3><p>Package-adaptive capture, bounded offline work, evidence provenance, six declaration groups, Visual Compliance Map states, role-based workflows, officer verification and citizen preliminary reporting.</p><ul><li>Commodity identity</li><li>Manufacturer / packer</li><li>Net quantity</li><li>MRP / retail sale price</li><li>Month / year manufacture</li><li>Consumer care</li></ul></div>
+      <div class="about-box"><h3>Prototype scope</h3><p>This prototype demonstrates the evidence-first workflow in a browser. The screen states mirror the supplied workflow: field capture, provenance, evidence review, officer verification and reporting.</p><div class="notice"><b>Officer verification:</b> AI-supported evidence is shown separately from the officer decision. The responsible officer remains the final verifier.</div></div>
+    </div>
+    <div class="notice" style="margin-top:22px"><b>Identity note:</b> Government and public-awareness marks are shown only as contextual references. E-Niriksha is a concept interface and is not presented as an official government portal.</div>
+  </div>
+</section>
+</main>
+
+<footer class="footer"><div class="container footer-inner"><div><b>E-Niriksha</b><div class="disclaimer">Concept prototype for evidence-first Legal Metrology inspection and public reporting. Not an official Government of India website.</div></div><div><a href="https://consumeraffairs.gov.in/pages/legal-metrology-overview" target="_blank" rel="noopener">Legal Metrology reference</a><br><a href="https://jagograhakjago.gov.in/cg/ConsumerAwareness.aspx" target="_blank" rel="noopener">Jago Grahak Jago</a></div></div></footer>
+
+<div class="portal" id="portal"><div class="portal-shell"><div class="portal-head"><div class="portal-title" id="portalTitle"></div><button class="close" onclick="closePortal()">Close</button></div><div class="portal-tabs" id="portalTabs"></div><div class="portal-content" id="portalContent"></div></div></div>
+
+<script src="https://cdn.jsdelivr.net/npm/piexifjs@1.0.6/piexif.min.js"></script>
+<script>
+const pages=['home','journey','roles','demo','about'];
+let cameraStream=null,storyIndex=0,storyTimer=null,currentLang='en',activeRole='';
+let evidenceState={blob:null,dataUrl:null,fileName:'',capturedAt:null,lat:null,lon:null,accuracy:null,sha256:null,geoTagged:false};
+let officerActions=[];
+let declarationActions={};
+
+const portalConfig={officer:{title:'Government Officer · E-Niriksha',tabs:['Overview','Priority queue','Patterns']},inspector:{title:'Legal Metrology Inspector · E-Niriksha',tabs:['Assigned case','Product viewer','Capture','Compliance Map','Report']},citizen:{title:'Citizen · E-Niriksha',tabs:['Preliminary scan','Confirm & submit','Track']}};
+const translations={
+en:{navHome:'Home',navJourney:'How it works',navRoles:'Who uses it',navDemo:'Demo',navAbout:'About',ctaInspector:'Open inspector',ctaExplore:'Explore workflow',ctaCitizen:'Citizen scan',heroDesc:'A practical digital workflow for packaged commodities: record what is seen, preserve provenance, organise declaration information, and keep the final finding with the responsible officer.'},
+hi:{navHome:'मुख्य पृष्ठ',navJourney:'प्रक्रिया',navRoles:'उपयोगकर्ता',navDemo:'डेमो',navAbout:'परिचय',ctaInspector:'निरीक्षक खोलें',ctaExplore:'प्रक्रिया देखें',ctaCitizen:'नागरिक स्कैन',heroDesc:'पैकेज्ड वस्तुओं के लिए एक व्यावहारिक डिजिटल कार्यप्रवाह: जो दिखाई दे उसे दर्ज करें, स्रोत सुरक्षित रखें, घोषणा संबंधी जानकारी व्यवस्थित करें और अंतिम निर्णय अधिकृत अधिकारी के पास रखें।'},
+kn:{navHome:'ಮುಖಪುಟ',navJourney:'ವಿಧಾನ',navRoles:'ಬಳಕೆದಾರರು',navDemo:'ಡೆಮೊ',navAbout:'ಪರಿಚಯ',ctaInspector:'ಪರಿಶೀಲಕರನ್ನು ತೆರೆಯಿರಿ',ctaExplore:'ವಿಧಾನ ನೋಡಿ',ctaCitizen:'ನಾಗರಿಕ ಸ್ಕ್ಯಾನ್',heroDesc:'ಪ್ಯಾಕೇಜ್ ಮಾಡಿದ ವಸ್ತುಗಳಿಗಾಗಿ ಪ್ರಾಯೋಗಿಕ ಡಿಜಿಟಲ್ ಕಾರ್ಯವಿಧಾನ: ಕಂಡದ್ದನ್ನು ದಾಖಲಿಸಿ, ಮೂಲವನ್ನು ಉಳಿಸಿ, ಘೋಷಣೆ ಮಾಹಿತಿಯನ್ನು ವ್ಯವಸ್ಥಿತಗೊಳಿಸಿ ಮತ್ತು ಅಂತಿಮ ನಿರ್ಧಾರವನ್ನು ಜವಾಬ್ದಾರಿ ಅಧಿಕಾರಿಯಲ್ಲೇ ಇರಿಸಿ.'},
+ta:{navHome:'முகப்பு',navJourney:'செயல்முறை',navRoles:'பயனர்கள்',navDemo:'டெமோ',navAbout:'பற்றி',ctaInspector:'ஆய்வாளரைத் திற',ctaExplore:'செயல்முறையைப் பார்',ctaCitizen:'குடிமக்கள் ஸ்கேன்',heroDesc:'பேக்கேஜ் செய்யப்பட்ட பொருட்களுக்கான நடைமுறை டிஜிட்டல் செயல்முறை: காண்பதைப் பதிவு செய்து, ஆதாரத் தடத்தைப் பாதுகாத்து, அறிவிப்பு தகவலை ஒழுங்குபடுத்தி, இறுதி முடிவை பொறுப்பான அதிகாரியிடம் வைத்திருக்கிறது.'},
+te:{navHome:'హోమ్',navJourney:'విధానం',navRoles:'వినియోగదారులు',navDemo:'డెమో',navAbout:'గురించి',ctaInspector:'ఇన్‌స్పెక్టర్ తెరవండి',ctaExplore:'వర్క్‌ఫ్లో చూడండి',ctaCitizen:'పౌర స్కాన్',heroDesc:'ప్యాకేజ్డ్ వస్తువుల కోసం ప్రాయోగిక డిజిటల్ విధానం: కనిపించినదాన్ని నమోదు చేసి, మూలాన్ని భద్రపరచి, ప్రకటన సమాచారాన్ని క్రమబద్ధీకరించి, తుది నిర్ణయాన్ని బాధ్యతగల అధికారికి వదిలివేస్తుంది.'},
+ml:{navHome:'ഹോം',navJourney:'പ്രക്രിയ',navRoles:'ഉപയോക്താക്കൾ',navDemo:'ഡെമോ',navAbout:'പരിചയം',ctaInspector:'ഇൻസ്പെക്ടർ തുറക്കുക',ctaExplore:'പ്രക്രിയ കാണുക',ctaCitizen:'പൗര സ്കാൻ',heroDesc:'പാക്കേജുചെയ്ത ഉൽപ്പന്നങ്ങൾക്കായുള്ള പ്രായോഗിക ഡിജിറ്റൽ പ്രവാഹം: കാണുന്നതു രേഖപ്പെടുത്തി, ഉറവിടം സംരക്ഷിച്ച്, പ്രഖ്യാപന വിവരങ്ങൾ ക്രമപ്പെടുത്തി, അന്തിമ കണ്ടെത്തൽ ഉത്തരവാദിയായ ഉദ്യോഗസ്ഥനിൽ നിലനിർത്തുന്നു.'},
+mr:{navHome:'मुख्यपृष्ठ',navJourney:'प्रक्रिया',navRoles:'वापरकर्ते',navDemo:'डेमो',navAbout:'माहिती',ctaInspector:'निरीक्षक उघडा',ctaExplore:'प्रक्रिया पाहा',ctaCitizen:'नागरिक स्कॅन',heroDesc:'पॅकेज केलेल्या वस्तूंसाठी व्यावहारिक डिजिटल प्रक्रिया: दिसणारी माहिती नोंदवा, स्रोत जतन करा, घोषणांची माहिती व्यवस्थित करा आणि अंतिम निष्कर्ष जबाबदार अधिकाऱ्याकडे ठेवा.'},
+bn:{navHome:'হোম',navJourney:'কীভাবে কাজ করে',navRoles:'ব্যবহারকারী',navDemo:'ডেমো',navAbout:'পরিচিতি',ctaInspector:'পরিদর্শক খুলুন',ctaExplore:'প্রক্রিয়া দেখুন',ctaCitizen:'নাগরিক স্ক্যান',heroDesc:'প্যাকেজজাত পণ্যের জন্য একটি ব্যবহারিক ডিজিটাল প্রক্রিয়া: যা দেখা যায় তা নথিভুক্ত করুন, উৎস সংরক্ষণ করুন, ঘোষণার তথ্য সাজান এবং চূড়ান্ত সিদ্ধান্ত দায়িত্বপ্রাপ্ত কর্মকর্তার কাছে রাখুন।'},
+gu:{navHome:'મુખ્ય પાનું',navJourney:'પ્રક્રિયા',navRoles:'વપરાશકર્તાઓ',navDemo:'ડેમો',navAbout:'પરિચય',ctaInspector:'નિરીક્ષક ખોલો',ctaExplore:'પ્રક્રિયા જુઓ',ctaCitizen:'નાગરિક સ્કેન',heroDesc:'પેકેજ્ડ વસ્તુઓ માટેનું વ્યવહારુ ડિજિટલ કાર્યપ્રવાહ: જે દેખાય તે નોંધો, સ્ત્રોત સાચવો, જાહેરાતની માહિતી ગોઠવો અને અંતિમ નિર્ણય જવાબદાર અધિકારી પાસે રાખો.'},
+pa:{navHome:'ਮੁੱਖ ਪੰਨਾ',navJourney:'ਤਰੀਕਾ',navRoles:'ਵਰਤੋਂਕਾਰ',navDemo:'ਡੈਮੋ',navAbout:'ਜਾਣ-ਪਛਾਣ',ctaInspector:'ਇੰਸਪੈਕਟਰ ਖੋਲ੍ਹੋ',ctaExplore:'ਤਰੀਕਾ ਵੇਖੋ',ctaCitizen:'ਨਾਗਰਿਕ ਸਕੈਨ',heroDesc:'ਪੈਕ ਕੀਤੀਆਂ ਵਸਤੂਆਂ ਲਈ ਵਿਹਾਰਕ ਡਿਜ਼ਿਟਲ ਪ੍ਰਕਿਰਿਆ: ਜੋ ਦਿਖਾਈ ਦੇਵੇ ਉਸਨੂੰ ਦਰਜ ਕਰੋ, ਸਰੋਤ ਸੰਭਾਲੋ, ਘੋਸ਼ਣਾ ਜਾਣਕਾਰੀ ਨੂੰ ਵਿਵਸਥਿਤ ਕਰੋ ਅਤੇ ਅੰਤਿਮ ਨਤੀਜਾ ਜ਼ਿੰਮੇਵਾਰ ਅਧਿਕਾਰੀ ਕੋਲ ਰੱਖੋ।'},
+or:{navHome:'ମୁଖ୍ୟ ପୃଷ୍ଠା',navJourney:'ପ୍ରକ୍ରିୟା',navRoles:'ବ୍ୟବହାରକାରୀ',navDemo:'ଡେମୋ',navAbout:'ପରିଚୟ',ctaInspector:'ନିରୀକ୍ଷକ ଖୋଲନ୍ତୁ',ctaExplore:'ପ୍ରକ୍ରିୟା ଦେଖନ୍ତୁ',ctaCitizen:'ନାଗରିକ ସ୍କାନ୍',heroDesc:'ପ୍ୟାକେଜ୍ ହୋଇଥିବା ସାମଗ୍ରୀ ପାଇଁ ଏକ ପ୍ରାୟୋଗିକ ଡିଜିଟାଲ ପ୍ରକ୍ରିୟା: ଦେଖାଯାଇଥିବା ତଥ୍ୟ ରେକର୍ଡ କରନ୍ତୁ, ଉତ୍ସ ସୁରକ୍ଷିତ ରଖନ୍ତୁ, ଘୋଷଣା ସୂଚନାକୁ ସଜାନ୍ତୁ ଏବଂ ଶେଷ ନିଷ୍ପତ୍ତି ଦାୟୀ ଅଧିକାରୀଙ୍କ ପାଖରେ ରଖନ୍ତୁ।'},
+as:{navHome:'মুখ্য পৃষ্ঠা',navJourney:'প্ৰক্ৰিয়া',navRoles:'ব্যৱহাৰকাৰী',navDemo:'ডেমো',navAbout:'পৰিচয়',ctaInspector:'পৰিদৰ্শক খোলক',ctaExplore:'প্ৰক্ৰিয়া চাওক',ctaCitizen:'নাগৰিক স্কেন',heroDesc:'পেকেজ কৰা সামগ্ৰীৰ বাবে ব্যৱহাৰিক ডিজিটেল প্ৰক্ৰিয়া: দেখা তথ্য ৰেকৰ্ড কৰক, উৎস সংৰক্ষণ কৰক, ঘোষণাৰ তথ্য সজাওক আৰু চূড়ান্ত সিদ্ধান্ত দায়িত্বশীল বিষয়াৰ ওচৰত ৰাখক।'}
+};
+
+function showPage(id){
+  pages.forEach(p=>document.getElementById('page-'+p)?.classList.toggle('active',p===id));
+  document.querySelectorAll('.nav-links button').forEach(b=>b.classList.toggle('active',b.dataset.page===id));
+  if(id==='home')startStoryReel();
+  window.scrollTo({top:0,behavior:'smooth'});
+  location.hash=id;
+}
+window.addEventListener('load',()=>{
+  const id=location.hash.replace('#','');
+  showPage(pages.includes(id)?id:'home');
+  setLanguage('en');
+  buildStoryProgress();
+  startStoryReel();
+});
+window.addEventListener('hashchange',()=>{
+  const id=location.hash.replace('#','');
+  if(pages.includes(id))showPage(id);
+});
+
+function setLanguage(lang){
+  currentLang=translations[lang]?lang:'en';
+  const t=translations[currentLang];
+  document.documentElement.lang=currentLang;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{if(t[el.dataset.i18n])el.textContent=t[el.dataset.i18n]});
+  const desc=document.getElementById('heroDescription'); if(desc)desc.textContent=t.heroDesc;
+  const select=document.getElementById('languageSelect'); if(select)select.value=currentLang;
+  document.body.dataset.language=currentLang;
+}
+function toggleLanguage(){setLanguage(currentLang==='en'?'hi':'en')}
+
+function buildStoryProgress(){
+  const box=document.getElementById('storyProgress'); if(!box)return;
+  box.innerHTML=[0,1,2,3,4,5,6].map((_,i)=>`<i class="${i===0?'active':''}"></i>`).join('');
+}
+function startStoryReel(){
+  const slides=[...document.querySelectorAll('.story-slide')];
+  if(!slides.length)return;
+  clearInterval(storyTimer);
+  slides.forEach((x,i)=>x.classList.toggle('active',i===storyIndex));
+  const bars=[...document.querySelectorAll('#storyProgress i')];
+  bars.forEach((b,i)=>b.classList.toggle('active',i===storyIndex));
+  storyTimer=setInterval(()=>{
+    storyIndex=(storyIndex+1)%slides.length;
+    slides.forEach((x,i)=>x.classList.toggle('active',i===storyIndex));
+    bars.forEach((b,i)=>b.classList.toggle('active',i===storyIndex));
+  },3600);
+}
+
+function openPortal(role){
+  activeRole=role;
+  document.getElementById('portalTitle').textContent=portalConfig[role].title;
+  document.getElementById('portalTabs').innerHTML=portalConfig[role].tabs.map((t,i)=>`<button onclick="portalTab(${i},'${role}')" class="${i===0?'active':''}">${t}</button>`).join('');
+  document.getElementById('portalContent').innerHTML=renderPortal(role);
+  document.getElementById('portal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closePortal(){stopCamera();document.getElementById('portal').classList.remove('open');document.body.style.overflow=''}
+function portalTab(i,role){document.querySelectorAll('#portalTabs button').forEach((b,j)=>b.classList.toggle('active',j===i));document.querySelectorAll('.portal-view').forEach((v,j)=>v.classList.toggle('active',j===i));if(role==='inspector'&&i===2){prepareCameraFallback();} if(role==='inspector'&&i===4)refreshReport();}
+function renderPortal(role){
+  if(role==='officer')return `<div class="portal-view active"><div class="portal-grid"><div class="panel"><div class="kicker">OPERATIONAL OVERVIEW</div><h3>Evidence-grounded work queue</h3><table class="table"><tr><th>CASE</th><th>PACKAGE</th><th>STATE</th><th>PRIORITY</th></tr><tr><td>LM-0264</td><td>Rigid cuboid</td><td>Officer review</td><td><span class="status"><i class="dot amber"></i>Medium</span></td></tr><tr><td>LM-0259</td><td>Flexible</td><td>Evidence gap</td><td><span class="status"><i class="dot red"></i>High</span></td></tr></table></div><div class="panel"><div class="kicker">VERIFIED PATTERN</div><h3>Repeated declaration mismatch</h3><p style="font-size:12px;color:#666;line-height:1.6">Pattern alerts remain grounded in verified inspection history. They are not generated from a single citizen scan.</p><button class="btn red" onclick="portalTab(1,'officer')">Open priority queue</button></div></div></div><div class="portal-view"><div class="portal-grid"><div class="panel"><h3>Priority queue</h3><div class="meta-row"><span>LM-0264</span><b>Review today</b></div><div class="meta-row"><span>LM-0259</span><b>Evidence gap</b></div></div><div class="panel"><h3>Inspection history</h3><p style="font-size:12px;color:#666">Evidence-linked records can be searched by case, package, inspector and declaration state.</p></div></div></div><div class="portal-view"><div class="panel"><h3>Systemic patterns</h3><p style="font-size:12px;color:#666">Patterns are surfaced only after repeated, verified inspection evidence. A single citizen scan does not create a systemic alert.</p><div class="review-explainer"><b>How this works:</b> verified inspection records are grouped by product, declaration issue, location or responsible entity. Repetition can then move an issue into a review queue for coordinated follow-up.</div><div class="action-log"><div><span>Current pattern</span><b>Repeated declaration mismatch</b></div><div><span>Evidence basis</span><b>3 verified inspection records</b></div><div><span>Officer action</span><b>Open priority queue</b></div></div><button class="btn red" style="margin-top:14px" onclick="markPatternFollowUp()">Mark for coordinated follow-up</button><button class="btn outline" style="margin:14px 0 0 8px" onclick="portalTab(1,'officer')">Open priority queue</button><div id="patternAction" class="small-note" style="margin-top:10px"></div></div></div>`;
+  if(role==='inspector')return `<div class="portal-view active"><div class="portal-grid"><div class="panel"><div class="kicker">ASSIGNED CASE</div><h3>LM-0264 · packaged commodity inspection</h3><p style="font-size:12px;color:#666;line-height:1.6">Capture the package according to its profile, preserve provenance and continue offline when connectivity is unavailable.</p><button class="btn red" onclick="portalTab(2,'inspector')">Open capture</button></div><div class="panel"><h3>Field state</h3><p><span class="status"><i class="dot"></i> Offline-ready</span></p><div class="evidence-line"><div><span>Capture profile</span><b>Rigid cuboid</b></div><div><span>Processing</span><b>After sync</b></div><div><span>Final decision</span><b>Officer verification</b></div></div></div></div></div>
+<div class="portal-view"><div class="panel"><div class="kicker">PRODUCT VIEWER</div><h3>Indian packaged-product labels</h3><p style="font-size:12px;color:#666;line-height:1.6">Real product photographs are used here so the interface feels grounded in everyday Indian retail packaging.</p><div class="product-gallery"><figure><img src="https://upload.wikimedia.org/wikipedia/commons/e/ee/Indian_product_MRP_and_USP_example.jpg" alt="Indian packaged product label showing MRP"><figcaption>Indian packaged label · MRP / retail price</figcaption></figure><figure><img src="https://www.bbassets.com/media/uploads/p/s/1203912-3_1-parle-gluco-biscuits-parle-g.jpg" alt="Parle-G packet back label"><figcaption>Parle-G · printed details</figcaption></figure><figure><img src="https://www.bbassets.com/media/uploads/p/s/40207351-2_7-kurkure-namkeen-masala-munch.jpg" alt="Kurkure Masala Munch packet label"><figcaption>Kurkure · MRP / MFD</figcaption></figure></div><button class="btn primary" style="margin-top:15px" onclick="portalTab(2,'inspector')">Go to capture</button></div></div>
+<div class="portal-view"><div class="capture-layout"><div class="panel"><div class="capture-permission"><strong>Step 1 · Allow device location</strong><p>First allow device location. After permission is granted, every captured image can be paired with latitude, longitude, accuracy and capture time. The prototype also writes GPS into the JPEG EXIF when the browser permits it.</p><button class="btn outline" onclick="requestLocation(true)">Allow location for this inspection</button> <span id="locationPermissionNote" class="small-note">Waiting for permission</span></div><div class="capture-tabs"><button class="active" onclick="captureTab(0)">Camera</button><button onclick="captureTab(1)">Captured photo</button></div><div id="capture0" class="capture-view active"><div class="camera-box"><video id="cameraVideo" autoplay playsinline muted></video><div class="frame"></div><div id="cameraMessage" style="position:absolute;bottom:15px;left:15px;right:15px;background:rgba(0,0,0,.64);color:white;padding:10px;font-size:11px">First allow location when asked. Then start the camera and allow camera access. On a phone, the rear camera can be used directly.</div></div><div class="capture-actions"><button class="primary" onclick="startCamera()">Start camera</button><button class="primary" onclick="takeSnapshot()">Capture view</button><button class="secondary" onclick="document.getElementById('evidenceUpload').click()">Choose photo</button><input id="evidenceUpload" type="file" accept="image/*" capture="environment" style="display:none" onchange="showUploaded(event)"></div><div class="capture-help"><b>Laptop:</b> use HTTPS or VS Code Live Server for live camera. <b>Phone:</b> Choose photo can launch the rear camera. Location permission is requested before evidence is recorded. After a photo is captured, the page records time, GPS accuracy and SHA-256, then prepares a geo-tagged JPEG when supported.</div></div><div id="capture1" class="capture-view"><img id="uploadedEvidence" class="evidence-real" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='600'%3E%3Crect width='100%' height='100%' fill='%23e9e1d3'/%3E%3Ctext x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='24' fill='%235f5a52'%3ECaptured image will appear here%3C/text%3E%3C/svg%3E" alt="Captured image preview placeholder"><div class="capture-actions"><button class="secondary" onclick="captureTab(0)">Back to camera</button><button class="secondary" onclick="document.getElementById('evidenceUpload').click()">Replace photo</button><button class="primary" onclick="downloadGeoPhoto()">Save geo-tagged photo</button></div></div><div id="captureStatus" class="capture-status">Capture state: location permission should be granted before the image is recorded.</div></div><div class="panel"><h3>Capture record</h3><p style="font-size:12px;color:#666;line-height:1.6">A capture record keeps the image and its provenance together. SHA-256 is a file fingerprint, not a claim that the GPS or scene is independently authentic.</p><div class="meta-row"><span>Evidence sequence</span><b id="seq">01</b></div><div class="meta-row"><span>GPS</span><b id="gpsState">Waiting for permission</b></div><div class="meta-row"><span>Accuracy</span><b id="gpsAccuracy"> / </b></div><div class="meta-row"><span>Capture time</span><b id="timeNow"> / </b></div><div class="meta-row"><span>Fingerprint</span><b id="hashShort">Not calculated</b></div><div class="meta-row"><span>Geo-tag</span><b id="geoTagState">Waiting</b></div><div class="hash-box" id="hashFull" style="margin-top:14px">SHA-256 will appear here after an image is captured.</div></div></div></div>
+<div class="portal-view"><div class="panel"><div class="kicker">DECLARATION REVIEW</div><h3>Visual Compliance Map</h3><p style="font-size:12px;color:#666;line-height:1.6">This is not a geographic map. It is a structured evidence view: each required declaration group is connected to what the captured package views support, conflict on, or fail to establish. It helps the officer decide what to verify next.</p><div class="review-explainer"><b>AI-supported evidence is separate from officer verification.</b> The system can surface candidates or conflicts; the responsible officer records the final action.</div><div class="declarations" id="declarationList"><div class="decl" data-decl="0"><div><b>Commodity identity</b><small>Clear grounded evidence</small></div><span class="status"><i class="dot"></i><span class="decl-state">Supported</span></span><div class="decl-actions"><button onclick="updateDeclaration(0,'Accepted')">Accept</button><button onclick="updateDeclaration(0,'Corrected')">Correct</button><button onclick="updateDeclaration(0,'Rejected')">Reject</button></div></div><div class="decl" data-decl="1"><div><b>Manufacturer / packer</b><small>Candidate responsible entity</small></div><span class="status"><i class="dot"></i><span class="decl-state">Supported</span></span><div class="decl-actions"><button onclick="updateDeclaration(1,'Accepted')">Accept</button><button onclick="updateDeclaration(1,'Corrected')">Correct</button><button onclick="updateDeclaration(1,'Rejected')">Reject</button></div></div><div class="decl" data-decl="2"><div><b>Net quantity</b><small>Views disagree</small></div><span class="status"><i class="dot amber"></i><span class="decl-state">Conflicting</span></span><div class="decl-actions"><button onclick="updateDeclaration(2,'Accepted')">Accept</button><button onclick="updateDeclaration(2,'Corrected')">Correct</button><button onclick="updateDeclaration(2,'Rejected')">Reject</button></div></div><div class="decl" data-decl="3"><div><b>MRP / retail sale price</b><small>Visible printed value</small></div><span class="status"><i class="dot"></i><span class="decl-state">Supported</span></span><div class="decl-actions"><button onclick="updateDeclaration(3,'Accepted')">Accept</button><button onclick="updateDeclaration(3,'Corrected')">Correct</button><button onclick="updateDeclaration(3,'Rejected')">Reject</button></div></div><div class="decl" data-decl="4"><div><b>Month / year manufacture</b><small>Candidate cannot be trusted</small></div><span class="status"><i class="dot amber"></i><span class="decl-state">Unresolved</span></span><div class="decl-actions"><button onclick="updateDeclaration(4,'Accepted')">Accept</button><button onclick="updateDeclaration(4,'Corrected')">Correct</button><button onclick="updateDeclaration(4,'Rejected')">Reject</button></div></div><div class="decl" data-decl="5"><div><b>Consumer care</b><small>Coverage adequate, declaration not detected</small></div><span class="status"><i class="dot amber"></i><span class="decl-state">Potentially absent</span></span><div class="decl-actions"><button onclick="updateDeclaration(5,'Accepted')">Accept</button><button onclick="updateDeclaration(5,'Corrected')">Correct</button><button onclick="updateDeclaration(5,'Rejected')">Reject</button></div></div></div><div id="verifyState" class="action-log"><div><span>Officer actions</span><b>None recorded yet</b></div></div></div></div>
+<div class="portal-view"><div class="panel"><div class="kicker">OFFICER RECORD</div><h3>Evidence-linked inspection report</h3><p style="font-size:12px;color:#666;line-height:1.6">The report is generated from the current prototype record, including capture time, GPS status, SHA-256 fingerprint and officer actions. It downloads as a readable HTML report so it can be opened in any browser and printed or saved as PDF.</p><table class="table"><tr><th>DECLARATION</th><th>VALUE / STATE</th><th>SOURCE</th><th>VERIFICATION</th></tr><tr><td>Commodity identity</td><td>Candidate</td><td>photo-01</td><td id="reportCommodity">Pending</td></tr><tr><td>MRP</td><td>Visible printed value</td><td>photo-01</td><td id="reportMrp">Pending</td></tr><tr><td>Net quantity</td><td>Conflicting candidates</td><td>photo-02, photo-03</td><td id="reportNet">Pending</td></tr></table><div class="evidence-line"><div><span>Capture time</span><b id="reportTime">Not captured</b></div><div><span>GPS</span><b id="reportGps">Not captured</b></div><div><span>SHA-256</span><b id="reportHash">Not captured</b></div><div><span>Officer action</span><b id="reportAction">Not recorded</b></div></div><button class="btn red" style="margin-top:18px" onclick="downloadReport()">Download inspection report</button><button class="btn outline" style="margin-top:18px;margin-left:8px" onclick="printCurrentReport()">Print / Save as PDF</button><div id="reportStatus" class="small-note" style="margin-top:10px"></div></div></div>`;
+  return `<div class="portal-view active"><div class="citizen-scan"><div><div class="kicker">PRELIMINARY SCAN</div><h3 style="font-family:"DM Serif Display",serif;color:var(--navy);font-size:42px;margin:8px 0">Check what is visible.</h3><p style="font-size:14px;color:#666;line-height:1.6">Upload a package image. The citizen result is preliminary and non-authoritative.</p></div><div class="panel"><div class="upload-box" onclick="document.getElementById('citizenFile').click()">Choose a package image<input id="citizenFile" type="file" accept="image/*" style="display:none" onchange="citizenUpload(event)"><br><small>or use a product example</small></div><button class="btn red" style="margin-top:12px;width:100%" onclick="citizenDemo()">Run preliminary scan</button><div id="citizenResult" class="result"><b>Ready for preliminary review</b><br>Upload a package image, then run the scan. The result will list which visible declaration areas appear readable and which need physical verification.</div></div></div></div><div class="portal-view"><div class="panel"><h3>Confirm & submit</h3><p style="font-size:12px;color:#666">Submit a structured lead for government review.</p><input id="leadInput" placeholder="Product / shop information" style="width:100%;padding:12px;border:1px solid #c9c0b2;background:#fffdf8"><button class="btn red" style="margin-top:13px" onclick="submitLead()">Submit structured lead</button><div id="leadMessage" style="margin-top:12px;color:var(--green);font-size:12px"></div></div></div><div class="portal-view"><div class="panel"><h3>Track complaint</h3><div class="process" style="grid-template-columns:repeat(4,1fr)"><article><div class="num">01</div><h3>Submitted</h3><p>Structured lead received.</p></article><article><div class="num">02</div><h3>Under review</h3><p>Evidence and source status assessed.</p></article><article><div class="num">03</div><h3>Inspection</h3><p>Officer follow-up can be recorded.</p></article><article><div class="num">04</div><h3>Resolved</h3><p>Outcome is shown after the responsible authority records it.</p></article></div></div></div>`;
+}
+function captureTab(n){document.querySelectorAll('.capture-tabs button').forEach((b,i)=>b.classList.toggle('active',i===n));document.querySelectorAll('.capture-view').forEach((v,i)=>v.classList.toggle('active',i===n))}
+function prepareCameraFallback(){
+  const video=document.getElementById('cameraVideo'); if(!video)return;
+  const msg=document.getElementById('cameraMessage');
+  if(!window.isSecureContext || !navigator.mediaDevices?.getUserMedia){
+    msg.textContent='Live camera needs HTTPS or localhost. Choose photo can still open the device camera on supported phones.';
+  }
+}
+function setCaptureTime(){
+  const now=new Date();
+  evidenceState.capturedAt=now;
+  const el=document.getElementById('timeNow'); if(el)el.textContent=now.toLocaleString();
+  const rt=document.getElementById('reportTime'); if(rt)rt.textContent=now.toLocaleString();
+}
+function decimalToDms(v){
+  const a=Math.abs(v),d=Math.floor(a),m=Math.floor((a-d)*60),s=Math.round(((a-d)*60-m)*60000)/1000;
+  return [[d,1],[m,1],[Math.round(s*1000),1000]];
+}
+function geoExif(lat,lon){
+  if(!window.piexif||lat==null||lon==null)return null;
+  const gps={};
+  gps[piexif.GPSIFD.GPSLatitudeRef]=lat>=0?'N':'S';
+  gps[piexif.GPSIFD.GPSLatitude]=decimalToDms(lat);
+  gps[piexif.GPSIFD.GPSLongitudeRef]=lon>=0?'E':'W';
+  gps[piexif.GPSIFD.GPSLongitude]=decimalToDms(lon);
+  return piexif.dump({GPS:gps});
+}
+async function makeGeoTagged(dataUrl){
+  if(!evidenceState.lat||!evidenceState.lon||!window.piexif)return dataUrl;
+  try{
+    const exif=geoExif(evidenceState.lat,evidenceState.lon);
+    const out=piexif.insert(exif,dataUrl);
+    evidenceState.geoTagged=true;
+    const g=document.getElementById('geoTagState');if(g)g.textContent='GPS written to JPEG';
+    return out;
+  }catch(e){
+    evidenceState.geoTagged=false;
+    const g=document.getElementById('geoTagState');if(g)g.textContent='Record linked; EXIF unavailable';
+    return dataUrl;
+  }
+}
+async function fingerprintBlob(blob){
+  const buf=await blob.arrayBuffer();
+  const hash=await crypto.subtle.digest('SHA-256',buf);
+  const hex=[...new Uint8Array(hash)].map(b=>b.toString(16).padStart(2,'0')).join('');
+  evidenceState.sha256=hex;
+  const short=document.getElementById('hashShort');if(short)short.textContent=hex.slice(0,16)+'…';
+  const full=document.getElementById('hashFull');if(full)full.textContent='SHA-256: '+hex;
+  const report=document.getElementById('reportHash');if(report)report.textContent=hex;
+}
+function setLocationUI(){
+  const el=document.getElementById('gpsState'),acc=document.getElementById('gpsAccuracy'),note=document.getElementById('locationPermissionNote');
+  if(evidenceState.lat!=null){
+    const txt=`${evidenceState.lat.toFixed(6)}, ${evidenceState.lon.toFixed(6)}`;
+    if(el)el.textContent=txt;if(acc)acc.textContent=`±${Math.round(evidenceState.accuracy)} m`;if(note)note.textContent='Location allowed and attached to this record';
+  }
+  const rg=document.getElementById('reportGps');if(rg)rg.textContent=evidenceState.lat!=null?`${evidenceState.lat.toFixed(6)}, ${evidenceState.lon.toFixed(6)} ±${Math.round(evidenceState.accuracy)}m`:'Not available';
+}
+function requestLocation(auto=false){
+  const el=document.getElementById('gpsState'),note=document.getElementById('locationPermissionNote');
+  if(!navigator.geolocation){if(el)el.textContent='Unavailable';if(note)note.textContent='This browser does not provide device location';return;}
+  if(el)el.textContent='Requesting permission…';if(note)note.textContent='Please allow location in the browser prompt';
+  navigator.geolocation.getCurrentPosition(
+    pos=>{evidenceState.lat=pos.coords.latitude;evidenceState.lon=pos.coords.longitude;evidenceState.accuracy=pos.coords.accuracy;setLocationUI();if(window.pendingEvidence){const p=window.pendingEvidence;window.pendingEvidence=null;registerEvidence(p.dataUrl,p.name);}else if(evidenceState.dataUrl)finalizeGeoTag();},
+    ()=>{if(el)el.textContent='Permission not granted';if(note)note.textContent='Allow location, then tap the button again';},
+    {enableHighAccuracy:true,timeout:12000,maximumAge:0}
+  );
+}
+async function finalizeGeoTag(){
+  if(!evidenceState.dataUrl)return;
+  const tagged=await makeGeoTagged(evidenceState.dataUrl);
+  evidenceState.dataUrl=tagged;
+  document.getElementById('uploadedEvidence').src=tagged;
+  const blob=dataUrlToBlob(tagged);
+  evidenceState.blob=blob;
+  await fingerprintBlob(blob);
+}
+function dataUrlToBlob(dataUrl){
+  const parts=dataUrl.split(','),mime=(parts[0].match(/:(.*?);/)||[])[1]||'image/jpeg';
+  const bin=atob(parts[1]),len=bin.length,u8=new Uint8Array(len);for(let i=0;i<len;i++)u8[i]=bin.charCodeAt(i);
+  return new Blob([u8],{type:mime});
+}
+function normalizeImageToJpeg(fileOrBlob){
+  return new Promise((resolve,reject)=>{
+    const url=URL.createObjectURL(fileOrBlob),img=new Image();
+    img.onload=()=>{const c=document.createElement('canvas'),max=1800,scale=Math.min(1,max/Math.max(img.naturalWidth,img.naturalHeight));c.width=Math.round(img.naturalWidth*scale);c.height=Math.round(img.naturalHeight*scale);c.getContext('2d').drawImage(img,0,0,c.width,c.height);URL.revokeObjectURL(url);resolve(c.toDataURL('image/jpeg',.92));};
+    img.onerror=reject;img.src=url;
+  });
+}
+async function registerEvidence(dataUrl,name){
+  evidenceState={...evidenceState,dataUrl,fileName:name||'inspection-photo.jpg',capturedAt:new Date(),geoTagged:false};
+  document.getElementById('uploadedEvidence').src=dataUrl;captureTab(1);
+  document.getElementById('captureStatus').textContent='Evidence recorded. Building provenance and fingerprint…';
+  document.getElementById('seq').textContent='02';setCaptureTime();
+  await fingerprintBlob(dataUrlToBlob(dataUrl));
+  if(evidenceState.lat!=null)await finalizeGeoTag();
+  document.getElementById('captureStatus').textContent='Evidence recorded with capture time, GPS status, accuracy and SHA-256.';
+  refreshReport();
+}
+async function startCamera(){
+  const video=document.getElementById('cameraVideo'),msg=document.getElementById('cameraMessage');
+  if(evidenceState.lat==null){msg.textContent='Location permission is required before evidence capture. Allow location first, then start the camera.';requestLocation(true);document.getElementById('captureStatus').textContent='Waiting for location permission before camera capture.';return;}
+  if(!window.isSecureContext || !navigator.mediaDevices?.getUserMedia){msg.textContent='Live camera needs HTTPS or localhost. Choose photo can still open the rear camera on a phone.';document.getElementById('evidenceUpload')?.click();return;}
+  try{stopCamera();cameraStream=await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:'environment'},width:{ideal:1280},height:{ideal:720}},audio:false});video.srcObject=cameraStream;await video.play().catch(()=>{});msg.textContent='Camera active. Frame the package and choose Capture view.';document.getElementById('captureStatus').textContent='Camera permission granted. Ready to capture.';}
+  catch(e){msg.textContent='Camera permission was denied or unavailable. Choose photo to continue.';document.getElementById('captureStatus').textContent='Camera unavailable. You can still use Choose photo.';document.getElementById('evidenceUpload')?.click();}
+}
+function stopCamera(){if(cameraStream){cameraStream.getTracks().forEach(t=>t.stop());cameraStream=null}}
+async function takeSnapshot(){
+  const video=document.getElementById('cameraVideo');
+  if(evidenceState.lat==null){document.getElementById('captureStatus').textContent='Please allow device location first. No evidence record will be created until location permission is granted.';requestLocation(true);return;}
+  if(!video?.srcObject){document.getElementById('captureStatus').textContent='No live camera frame. Start the camera or choose a photo.';document.getElementById('evidenceUpload')?.click();return;}
+  const c=document.createElement('canvas');c.width=video.videoWidth||900;c.height=video.videoHeight||600;c.getContext('2d').drawImage(video,0,0,c.width,c.height);
+  await registerEvidence(c.toDataURL('image/jpeg',.92),'camera-capture.jpg');stopCamera();
+}
+async function showUploaded(e){
+  const f=e.target.files?.[0];if(!f)return;
+  try{
+    const data=await normalizeImageToJpeg(f);
+    if(evidenceState.lat==null){
+      window.pendingEvidence={dataUrl:data,name:f.name};
+      document.getElementById('uploadedEvidence').src=data;captureTab(1);
+      document.getElementById('captureStatus').textContent='Photo selected. Allow location to finish recording this evidence.';
+      requestLocation(true);
+      return;
+    }
+    await registerEvidence(data,f.name);
+  }catch(err){document.getElementById('captureStatus').textContent='The selected image could not be read. Please choose another photo.';}
+}
+function downloadGeoPhoto(){
+  if(!evidenceState.dataUrl){document.getElementById('captureStatus').textContent='Capture a photo first.';return;}
+  const a=document.createElement('a');a.href=evidenceState.dataUrl;a.download='E-Niriksha-geotagged-inspection-photo.jpg';a.click();
+}
+function markPatternFollowUp(){const el=document.getElementById('patternAction');if(el){el.textContent='Follow-up marked for coordinated officer review. Pattern status: ACTIONABLE.';el.style.color='var(--green)';}}
+function updateDeclaration(index,action){
+  declarationActions[index]=action;officerActions.push({time:new Date(),action,index});
+  const row=document.querySelector(`.decl[data-decl="${index}"]`);if(!row)return;
+  row.classList.add('actioned');row.querySelector('.decl-state').textContent=action;
+  const log=document.getElementById('verifyState');if(log){log.innerHTML='<div><span>Latest officer action</span><b>'+action+'</b></div>'+officerActions.slice(-4).reverse().map(x=>`<div><span>${new Date(x.time).toLocaleTimeString()}</span><b>${x.action} · declaration ${x.index+1}</b></div>`).join('');}
+  refreshReport();
+}
+function refreshReport(){
+  const last=officerActions.at(-1);
+  const ra=document.getElementById('reportAction');if(ra)ra.textContent=last?last.action:'Not recorded';
+  if(document.getElementById('reportTime'))document.getElementById('reportTime').textContent=evidenceState.capturedAt?evidenceState.capturedAt.toLocaleString():'Not captured';
+  if(document.getElementById('reportHash'))document.getElementById('reportHash').textContent=evidenceState.sha256||'Not captured';
+  if(document.getElementById('reportGps'))document.getElementById('reportGps').textContent=evidenceState.lat!=null?`${evidenceState.lat.toFixed(6)}, ${evidenceState.lon.toFixed(6)} ±${Math.round(evidenceState.accuracy)}m`:'Not available';
+  if(document.getElementById('reportCommodity'))document.getElementById('reportCommodity').textContent=declarationActions[0]||'Pending';
+  if(document.getElementById('reportMrp'))document.getElementById('reportMrp').textContent=declarationActions[3]||'Pending';
+  if(document.getElementById('reportNet'))document.getElementById('reportNet').textContent=declarationActions[2]||'Pending';
+}
+function downloadReport(){
+  refreshReport();
+  const caseId='LM-0264',time=evidenceState.capturedAt?evidenceState.capturedAt.toLocaleString():'Not captured',gps=evidenceState.lat!=null?`${evidenceState.lat.toFixed(6)}, ${evidenceState.lon.toFixed(6)} ±${Math.round(evidenceState.accuracy)}m`:'Not available',hash=evidenceState.sha256||'Not calculated',action=officerActions.length?officerActions.map(x=>`${new Date(x.time).toLocaleString()} / ${x.action} (declaration ${x.index+1})`).join('<br>'):'No officer action recorded yet';
+  const html=`<!doctype html><html><head><meta charset="utf-8"><title>E-Niriksha Inspection Report ${caseId}</title><style>body{font-family:"Plus Jakarta Sans",Arial,sans-serif;max-width:900px;margin:40px auto;color:#222}h1{color:#203b61}h2{border-bottom:1px solid #ddd;padding-bottom:8px}.meta{display:grid;grid-template-columns:180px 1fr;border-top:1px solid #ddd}.meta div{padding:10px;border-bottom:1px solid #ddd}.label{font-weight:bold;color:#555}table{width:100%;border-collapse:collapse}th,td{border:1px solid #ccc;padding:9px;text-align:left}small{color:#666}</style></head><body><h1>E-Niriksha Inspection Report</h1><p><b>Case:</b> ${caseId}<br><small>Concept prototype report generated from the current browser record.</small></p><h2>Capture provenance</h2><div class="meta"><div class="label">Capture time</div><div>${time}</div><div class="label">GPS</div><div>${gps}</div><div class="label">SHA-256</div><div>${hash}</div><div class="label">Geo-tag</div><div>${evidenceState.geoTagged?'GPS written into JPEG EXIF':'Location linked to record; EXIF unavailable'}</div></div><h2>Declaration review</h2><table><tr><th>Declaration</th><th>Officer action</th></tr><tr><td>Commodity identity</td><td>${declarationActions[0]||'Pending'}</td></tr><tr><td>Manufacturer / packer</td><td>${declarationActions[1]||'Pending'}</td></tr><tr><td>Net quantity</td><td>${declarationActions[2]||'Pending'}</td></tr><tr><td>MRP / retail sale price</td><td>${declarationActions[3]||'Pending'}</td></tr><tr><td>Month / year manufacture</td><td>${declarationActions[4]||'Pending'}</td></tr><tr><td>Consumer care</td><td>${declarationActions[5]||'Pending'}</td></tr></table><h2>Action log</h2><p>${action}</p><h2>Important scope</h2><p>This browser prototype demonstrates the evidence-first workflow. It does not claim a production case repository, official government case data, or authoritative citizen findings.</p></body></html>`;
+  const blob=new Blob([html],{type:'text/html'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`E-Niriksha-${caseId}-inspection-report.html`;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);const rs=document.getElementById('reportStatus');if(rs)rs.textContent='Report generated and downloaded. Open the HTML file to print or save as PDF.';
+}
+function printCurrentReport(){
+  const caseId='LM-0264',time=evidenceState.capturedAt?evidenceState.capturedAt.toLocaleString():'Not captured',gps=evidenceState.lat!=null?`${evidenceState.lat.toFixed(6)}, ${evidenceState.lon.toFixed(6)} ±${Math.round(evidenceState.accuracy)}m`:'Not available',hash=evidenceState.sha256||'Not calculated';
+  const w=window.open('','_blank','noopener,noreferrer');
+  if(!w){document.getElementById('reportStatus').textContent='Pop-up blocked. Allow pop-ups for this site, then try Print / Save as PDF again.';return;}
+  w.document.write(`<html><head><title>E-Niriksha Inspection Report ${caseId}</title><style>body{font-family:"Plus Jakarta Sans",Arial,sans-serif;max-width:900px;margin:40px auto;color:#222}h1{color:#203b61}table{width:100%;border-collapse:collapse}th,td{border:1px solid #ccc;padding:9px;text-align:left}.meta{display:grid;grid-template-columns:180px 1fr}.meta div{padding:9px;border-bottom:1px solid #ddd}.label{font-weight:bold}</style></head><body><h1>E-Niriksha Inspection Report</h1><p><b>Case:</b> ${caseId}</p><div class=meta><div class=label>Capture time</div><div>${time}</div><div class=label>GPS</div><div>${gps}</div><div class=label>SHA-256</div><div>${hash}</div></div><h2>Declaration review</h2><table><tr><th>Declaration</th><th>Officer action</th></tr>${['Commodity identity','Manufacturer / packer','Net quantity','MRP / retail sale price','Month / year manufacture','Consumer care'].map((x,i)=>`<tr><td>${x}</td><td>${declarationActions[i]||'Pending'}</td></tr>`).join('')}</table><h2>Officer action log</h2><p>${officerActions.length?officerActions.map(x=>`${new Date(x.time).toLocaleString()} / ${x.action} / declaration ${x.index+1}`).join('<br>'):'No officer action recorded yet'}</p><p><small>Concept prototype record. Authoritative action remains with the responsible officer.</small></p></body></html>`);w.document.close();setTimeout(()=>w.print(),300);}
+function citizenDemo(){
+  const r=document.getElementById('citizenResult'),f=document.getElementById('citizenFile')?.files?.[0];
+  r.classList.add('show','success');
+  if(!f){r.innerHTML='<b>Preliminary review ready</b><br><span class="scan-line">No image was uploaded yet.</span><br><small>Choose a package image first. This result is preliminary and non-authoritative.</small>';return;}
+  r.innerHTML='<b>Preliminary scan complete</b><br><span class="scan-line">Image received · '+f.name+'</span><br><span class="scan-line">Commodity identity · candidate visible</span><br><span class="scan-line">MRP / retail sale price · candidate visible</span><br><span class="scan-line">Net quantity · candidate visible</span><br><span class="scan-line">Manufacturer / packer · needs review</span><br><span class="scan-line">Consumer care · needs review</span><br><small>Preliminary only. The scan does not make an authoritative compliance finding; physical verification is required where evidence is incomplete.</small>';
+}
+function citizenUpload(e){
+  const f=e.target.files?.[0];if(!f)return;const r=document.getElementById('citizenResult');r.classList.add('show');r.innerHTML=`<b>Image received</b><br>${f.name} is ready. Run the preliminary scan to review visible declaration areas.`;
+}
+function submitLead(){const v=document.getElementById('leadInput').value.trim();document.getElementById('leadMessage').textContent=v?'Lead submitted in prototype. Reference: CIT-0264. You can now open Track complaint.':'Please enter a product or shop detail first.'}
+</script>
+</body>
+</html>
